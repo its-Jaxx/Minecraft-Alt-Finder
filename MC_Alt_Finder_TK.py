@@ -21,19 +21,19 @@ def process_shop_data(shop_data):
         item = ' '.join(word.capitalize() for word in item.split())
         item = item.replace('Null', 'Empty')
 
-        current_row.append(f'Slot {i} - {item}')
+        current_row.append(f"Slot {i} - {item}")
 
         if i % 7 == 0:
-            f_items.append(f'Row {len(f_items) + 1}:\n{"\n".join(current_row)}')
+            f_items.append(f"Row {len(f_items) + 1}:\n{"\n".join(current_row)}")
             current_row = []
 
     if current_row:
-        f_items.append(f'Row {len(f_items) + 1}:\n{"\n".join(current_row)}')
+        f_items.append(f"Row {len(f_items) + 1}:\n{"\n".join(current_row)}")
 
-    return '\n\n'.join(f_items)
+    return "\n\n".join(f_items)
 
 def show_user_details(notebook, username):
-    as_1 = f'https://api.antisniper.net/v2/convert/mojang?player={username}&key={antisniper_api_key}'
+    as_1 = f"https://api.antisniper.net/v2/convert/mojang?player={username}&key={antisniper_api_key}"
     data = get_info(as_1)
 
     frame = ttk.Frame(notebook)
@@ -43,7 +43,7 @@ def show_user_details(notebook, username):
 
         uuid = data["uuid"]
 
-        alt_url = f'https://api.antisniper.net/v2/player/altfinder?player={uuid}&key={antisniper_api_key}'
+        alt_url = f"https://api.antisniper.net/v2/player/altfinder?player={uuid}&key={antisniper_api_key}"
         data_alt = get_info(alt_url)
 
         if 'data' in data_alt and data_alt['data']:
@@ -64,15 +64,10 @@ def show_user_details(notebook, username):
         popup_message = "Player not found: " + username
         messagebox.showinfo("Player Not Found", popup_message)
 
-
-
 class App:
     def __init__(self, master):
         self.master = master
         master.title("Player Details + AltFinder")
-
-        icon_path = r'C:\Users\aftxrlifx\Desktop\Coding\Python Files\Alt Finder\gear.ico'
-        master.iconbitmap(icon_path)
 
         style = ttk.Style()
 
